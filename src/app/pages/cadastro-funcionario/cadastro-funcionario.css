@@ -1,0 +1,77 @@
+.cadastro-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    background-color: #0b1c3f;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .cadastro-container {
+    background-color: #153e75;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    width: 90%;
+    max-width: 450px;
+  }
+  
+  .cadastro-container h1 {
+    color: #f56c00;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .cadastro-container p {
+    color: #d9d9d9;
+    margin-bottom: 25px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  input {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+  }
+  
+  .submit-btn {
+    background-color: #f56c00;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #d95f00;
+  }
+
+  .voltar-btn {
+    background: none;
+    border: none;
+    color: #f56c00;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+    align-self: flex-start;
+  }
+  
+  .voltar-btn:hover {
+    color: #ffffff;
+  }
+  
+  
