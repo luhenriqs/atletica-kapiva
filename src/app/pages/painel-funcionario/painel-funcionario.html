@@ -1,49 +1,75 @@
 <section class="painel-funcionario">
-    <div class="painel-header">
-      <h1>Painel do Funcionário</h1>
-      <button class="sair-btn" (click)="sair()">Sair</button>
-    </div>
-  
-    <div class="tabs">
-      <button (click)="abaSelecionada = 'professores'" [class.active]="abaSelecionada === 'professores'">
-        👨‍🏫 Professores
-      </button>
-      <button (click)="abaSelecionada = 'aulas'" [class.active]="abaSelecionada === 'aulas'">
-        📅 Aulas
-      </button>
-      <button (click)="abaSelecionada = 'trocas'" [class.active]="abaSelecionada === 'trocas'">
-        🔄 Trocas de Horário
-      </button>
-    </div>
-  
-    <!-- 📘 Aba de Professores -->
-    <div *ngIf="abaSelecionada === 'professores'" class="content">
-      <h2>Cadastro de Professores</h2>
-  
-      <form (submit)="adicionarProfessor($event)">
-        <input type="text" placeholder="Nome do professor" [(ngModel)]="novoProfessor.nome" name="nome" required />
-        <input type="text" placeholder="Modalidade (ex: Futebol Sub-15)" [(ngModel)]="novoProfessor.modalidade" name="modalidade" required />
-        <button type="submit" class="submit-btn">Adicionar</button>
-      </form>
-  
-      <ul class="lista">
-        <li *ngFor="let prof of professores; let i = index">
-          <span>{{ prof.nome }} — {{ prof.modalidade }}</span>
-          <button (click)="removerProfessor(i)" class="remover-btn">Remover</button>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- 📅 Aba de Aulas (placeholder) -->
-    <div *ngIf="abaSelecionada === 'aulas'" class="content">
-      <h2>Registro de Aulas</h2>
-      <p>(Essa parte será conectada aos professores cadastrados em breve!)</p>
-    </div>
-  
-    <!-- 🔄 Aba de Trocas -->
-    <div *ngIf="abaSelecionada === 'trocas'" class="content">
-      <h2>Trocas de Horário</h2>
-      <p>(Aqui serão registradas solicitações de mudança de horário.)</p>
-    </div>
-  </section>
-  
+  <div class="painel-header">
+    <h1>Painel do Funcionário</h1>
+    <button class="sair-btn" (click)="sair()">Sair</button>
+  </div>
+
+  <div class="tabs">
+    <button (click)="abaSelecionada = 'professores'" [class.active]="abaSelecionada === 'professores'">
+      📋 Cadastro de Aulas
+    </button>
+    <button (click)="abaSelecionada = 'aulas'" [class.active]="abaSelecionada === 'aulas'">
+      📅 Calendário
+    </button>
+    <button (click)="abaSelecionada = 'trocas'" [class.active]="abaSelecionada === 'trocas'">
+      🔄 Trocas de Horário
+    </button>
+  </div>
+
+  <!-- 📘 Aba de Cadastro de Aulas -->
+  <div *ngIf="abaSelecionada === 'professores'" class="content">
+    <h2>Cadastro de Aulas</h2>
+
+    <form (submit)="adicionarAula($event)">
+      <input
+        type="text"
+        placeholder="Título da aula (ex: Treino Sub-17)"
+        [(ngModel)]="novaAula.titulo"
+        name="titulo"
+        required
+      />
+    
+      <input
+        type="date"
+        [(ngModel)]="novaAula.data"
+        name="data"
+        required
+        (focus)="abrirSeletor($event)"
+      />
+    
+      <input
+        type="time"
+        [(ngModel)]="novaAula.hora"
+        name="hora"
+        required
+        step="300"
+        min="00:00"
+        max="23:59"
+        inputmode="numeric"
+        pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+        (focus)="abrirSeletor($event)"
+      />
+    
+      <button type="submit" class="submit-btn">Adicionar Aula</button>
+    </form>    
+
+    <ul class="lista">
+      <li *ngFor="let aula of aulas; let i = index">
+        <span>{{ aula.titulo }} — {{ aula.data }} às {{ aula.hora }}</span>
+        <button (click)="removerAula(i)" class="remover-btn">Remover</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 📅 Calendário -->
+  <div *ngIf="abaSelecionada === 'aulas'" class="content">
+    <h2>📅 Aulas Marcadas</h2>
+    <app-calendario [eventos]="aulas"></app-calendario>
+  </div>
+
+  <!-- 🔄 Trocas -->
+  <div *ngIf="abaSelecionada === 'trocas'" class="content">
+    <h2>Trocas de Horário</h2>
+    <p>(Aqui serão registradas solicitações de mudança de horário.)</p>
+  </div>
+</section>
