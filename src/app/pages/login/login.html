@@ -1,0 +1,31 @@
+<section class="login-page">
+  <div class="login-container">
+    <h1>Login</h1>
+    <p>Selecione o seu perfil para continuar</p>
+
+    <div class="roles">
+      <button class="role-btn aluno" (click)="selectRole('aluno')">
+        Sou Aluno
+      </button>
+      <button class="role-btn funcionario" (click)="selectRole('funcionario')">
+        Sou Funcionário
+      </button>
+    </div>
+
+    <div class="login-form" *ngIf="selectedRole">
+      <h2 *ngIf="selectedRole === 'aluno'">Login do Aluno</h2>
+      <h2 *ngIf="selectedRole === 'funcionario'">Login do Funcionário</h2>
+
+      <form>
+        <input type="text" placeholder="E-mail ou usuário" />
+        <input type="password" placeholder="Senha" />
+        <button class="submit-btn" type="button" (click)="login()">Entrar</button>
+      </form>
+
+      <p class="cadastrese">
+        Ainda não tem conta?
+        <span (click)="goToCadastro()">Cadastre-se</span>
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,255 @@
+.painel-funcionario {
+    background-color: #0b1c3f;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .painel-header h1 {
+    color: #f56c00;
+  }
+  
+  .sair-btn {
+    background: none;
+    color: #fff;
+    border: 2px solid #f56c00;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .sair-btn:hover {
+    background-color: #f56c00;
+  }
+  
+  .painel-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+  
+  .card {
+    background-color: #153e75;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 500;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+    background-color: #1d4d8f;
+  }
+  
+  .painel-funcionario {
+    background-color: #0b1c3f;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .painel-header h1 {
+    color: #f56c00;
+  }
+  
+  .sair-btn {
+    background: none;
+    color: #fff;
+    border: 2px solid #f56c00;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .sair-btn:hover {
+    background-color: #f56c00;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+  }
+  
+  .tabs button {
+    background: none;
+    border: 2px solid #f56c00;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .tabs button.active,
+  .tabs button:hover {
+    background-color: #f56c00;
+  }
+  
+  .content {
+    background-color: #153e75;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  input {
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .submit-btn {
+    background-color: #f56c00;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #d95f00;
+  }
+  
+  .lista {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lista li {
+    background-color: #1d4d8f;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .remover-btn {
+    background: none;
+    border: 1px solid #f56c00;
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: all 0.3s;
+  }
+  
+  .remover-btn:hover {
+    background-color: #f56c00;
+  }
+  
+  /* ------------------------------
+   BOTÕES PADRÃO DO SISTEMA
+--------------------------------*/
+
+button {
+  background-color: #f56c00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+button:hover {
+  background-color: #d95f00;
+}
+
+/* Botões menores (Remover, Editar, Salvar etc) */
+.remover-btn {
+  background-color: transparent;
+  border: 1px solid #f56c00;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: 0.3s;
+}
+
+.remover-btn:hover {
+  background-color: #f56c00;
+}
+
+/* Área dos botões dentro das aulas */
+.botoes {
+  display: flex;
+  gap: 10px;
+}
+
+/* Área de edição */
+.edit-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.edit-container input {
+  flex: 1;
+}
+
+/* Botão principal do formulário */
+.submit-btn {
+  background-color: #f56c00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #d95f00;
+}
+
+/* Botão EDITAR */
+.editar-btn {
+  background-color: #153e75; /* azul */
+  border: 1px solid #f56c00; 
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-right: 10px; /* espaçamento entre Editar e Remover */
+}
+
+.editar-btn:hover {
+  background-color: #f56c00; /* laranja no hover */
+}
+
+  

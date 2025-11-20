@@ -1,0 +1,33 @@
+.calendar-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  :host ::ng-deep .fc {
+    background-color: white;
+    color: #0b1c3f;
+    border-radius: 10px;
+    padding: 15px;
+  }
+  
+  :host ::ng-deep .fc-toolbar-title {
+    color: #f56c00;
+  }
+  
+  :host ::ng-deep .fc-button {
+    background-color: #153e75;
+    border: none;
+    color: white;
+    transition: 0.3s;
+  }
+  
+  :host ::ng-deep .fc-button:hover {
+    background-color: #f56c00;
+  }
+  
+  :host ::ng-deep .fc-daygrid-day-number {
+    color: #0b1c3f;
+  }
+  

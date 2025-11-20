@@ -1,0 +1,50 @@
+.painel-aluno {
+    background-color: #0b1c3f;
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .painel-header h1 {
+    color: #f56c00;
+  }
+  
+  .sair-btn {
+    background: none;
+    color: #fff;
+    border: 2px solid #f56c00;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .sair-btn:hover {
+    background-color: #f56c00;
+  }
+  
+  .info {
+    margin-top: 30px;
+  }
+  
+  h2 {
+    color: #f56c00;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 8px;
+  }
+  
