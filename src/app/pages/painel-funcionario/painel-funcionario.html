@@ -13,21 +13,22 @@
     <button type="button" (click)="abaSelecionada = 'alunos'" [class.active]="abaSelecionada === 'alunos'">👶 Alunos</button>
     <button type="button" (click)="abaSelecionada = 'gerenciarProfessores'" [class.active]="abaSelecionada === 'gerenciarProfessores'">👨‍🏫 Professores</button>
     <button type="button" (click)="abaSelecionada = 'turmas'" [class.active]="abaSelecionada === 'turmas'">🏫 Turmas</button>
+    <button type="button" (click)="abaSelecionada = 'matriculas'" [class.active]="abaSelecionada === 'matriculas'">📝 Matrículas</button>
   </nav>
 
   <!-- ===================================================== -->
   <!-- 🔹 ABA: CADASTRO DE AULAS -->
   <!-- ===================================================== -->
-
   <section *ngIf="abaSelecionada === 'professores'" class="content">
     <h2>{{ aulaEditando ? 'Edição de Aulas' : 'Cadastro de Aulas' }}</h2>
 
     <form (submit)="aulaEditando ? salvarEdicao() : adicionarAula($event)" class="form-cadastro">
-      <input type="text" placeholder="Título da aula" required [(ngModel)]="novaAula.titulo" name="titulo" />
-      <input type="date" required [(ngModel)]="novaAula.data" name="data" (focus)="abrirSeletor($event)" />
 
-      <input type="time" required step="300" min="00:00" max="23:59"
-             [(ngModel)]="novaAula.hora" name="hora" (focus)="abrirSeletor($event)" />
+      <input type="text" placeholder="Título da aula" required [(ngModel)]="novaAula.titulo" name="titulo" />
+
+      <input type="date" required [(ngModel)]="novaAula.data" name="data" />
+
+      <input type="time" required step="300" [(ngModel)]="novaAula.hora" name="hora" />
 
       <select required [(ngModel)]="novaAula.professorId" name="professor">
         <option value="" disabled selected>Escolha o professor</option>
@@ -42,12 +43,12 @@
               (click)="aulaEditando = null; novaAula = { titulo: '', data: '', hora: '', professorId: null }">
         Cancelar
       </button>
+
     </form>
 
     <ul class="lista">
       <li *ngFor="let aula of aulas">
         <span class="info">{{ aula.titulo }} — {{ aula.data }} às {{ aula.hora }}</span>
-
         <div class="acoes">
           <button type="button" class="editar-btn" (click)="prepararEdicao(aula)">Editar</button>
           <button type="button" class="remover-btn" (click)="removerAula(aula.id)">Remover</button>
@@ -59,7 +60,6 @@
   <!-- ===================================================== -->
   <!-- 🔹 ABA: CALENDÁRIO -->
   <!-- ===================================================== -->
-
   <section *ngIf="abaSelecionada === 'aulas'" class="content">
     <h2>📅 Aulas Marcadas</h2>
     <app-calendario [eventos]="aulas"></app-calendario>
@@ -68,24 +68,25 @@
   <!-- ===================================================== -->
   <!-- 🔹 ABA: ALUNOS -->
   <!-- ===================================================== -->
-
   <section *ngIf="abaSelecionada === 'alunos'" class="content">
     <h2>{{ alunoEditando ? 'Editar Aluno' : 'Cadastro de Alunos' }}</h2>
 
     <form (submit)="alunoEditando ? salvarEdicaoAluno() : adicionarAluno($event)" class="form-cadastro">
 
       <input type="text" placeholder="Nome do aluno" required [(ngModel)]="novoAluno.nome" name="alunoNome" />
+
       <input type="date" required [(ngModel)]="novoAluno.dataNascimento" name="dataNascimento" />
 
       <input type="text" placeholder="Nome do responsável" required [(ngModel)]="novoAluno.nomeResponsavel" name="nomeResponsavel" />
 
-      <input type="text" placeholder="CPF do responsável" maxlength="14"
-             required [(ngModel)]="novoAluno.cpfResponsavel"
-             name="cpfResponsavel" (input)="aplicarMascaraCPFResponsavel()" [class.invalido]="cpfResponsavelInvalido" />
+      <input type="text" placeholder="CPF do responsável" maxlength="14" required
+             [(ngModel)]="novoAluno.cpfResponsavel" name="cpfResponsavel"
+             (input)="aplicarMascaraCPFResponsavel()" [class.invalido]="cpfResponsavelInvalido" />
 
       <p *ngIf="cpfResponsavelInvalido" class="erro-cpf">CPF inválido. Verifique e tente novamente.</p>
 
       <input type="email" placeholder="Email do responsável" required [(ngModel)]="novoAluno.emailResponsavel" name="emailResponsavel" />
+
       <input type="tel" placeholder="Telefone do responsável" required [(ngModel)]="novoAluno.telefoneResponsavel" name="telefoneResponsavel" />
 
       <button class="submit-btn" type="submit" [disabled]="cpfResponsavelInvalido">
@@ -93,38 +94,33 @@
       </button>
 
       <button *ngIf="alunoEditando" type="button" class="cancel-btn" (click)="cancelarEdicaoAluno()">Cancelar</button>
+
     </form>
 
     <ul class="lista">
       <li *ngFor="let aluno of alunos">
-        <span class="info">
-          {{ aluno.nome }} — {{ aluno.dataNascimento }} — Responsável: {{ aluno.nomeResponsavel }}
-        </span>
-
+        <span class="info">{{ aluno.nome }} — {{ aluno.dataNascimento }} — Responsável: {{ aluno.nomeResponsavel }}</span>
         <div class="acoes">
           <button type="button" class="editar-btn" (click)="prepararEdicaoAluno(aluno)">Editar</button>
           <button type="button" class="remover-btn" (click)="removerAluno(aluno.id)">Remover</button>
         </div>
       </li>
     </ul>
-
   </section>
 
   <!-- ===================================================== -->
   <!-- 🔹 ABA: PROFESSORES -->
   <!-- ===================================================== -->
-
   <section *ngIf="abaSelecionada === 'gerenciarProfessores'" class="content">
-
     <h2>{{ professorEditando ? 'Editar Professor' : 'Cadastro de Professores' }}</h2>
 
     <form (submit)="professorEditando ? salvarEdicaoProfessor() : adicionarProfessor($event)" class="form-cadastro">
 
       <input type="text" placeholder="Nome do professor" required [(ngModel)]="novoProfessor.nome" name="profNome" />
 
-      <input type="text" placeholder="CPF" maxlength="14"
-             required [(ngModel)]="novoProfessor.cpf"
-             name="profCpf" (input)="aplicarMascaraCPF()" [class.invalido]="cpfInvalido" />
+      <input type="text" placeholder="CPF" maxlength="14" required
+             [(ngModel)]="novoProfessor.cpf" name="profCpf"
+             (input)="aplicarMascaraCPF()" [class.invalido]="cpfInvalido" />
 
       <p *ngIf="cpfInvalido" class="erro-cpf">CPF inválido. Verifique e tente novamente.</p>
 
@@ -132,7 +128,9 @@
         {{ professorEditando ? 'Salvar Edição' : 'Adicionar Professor' }}
       </button>
 
-      <button *ngIf="professorEditando" type="button" class="cancel-btn" (click)="cancelarEdicaoProfessor()">Cancelar</button>
+      <button *ngIf="professorEditando" type="button" class="cancel-btn"
+              (click)="cancelarEdicaoProfessor()">Cancelar</button>
+
     </form>
 
     <ul class="lista">
@@ -140,19 +138,17 @@
         <span class="info">
           {{ professor.nome }} — CPF: {{ professor.cpf }} — Contratado em: {{ professor.dataContratacao }}
         </span>
-
         <div class="acoes">
-          <button type="button" class="editar-btn" (click)="prepararEdicaoProfessor(professor)">Editar</button>
-          <button type="button" class="remover-btn" (click)="removerProfessor(professor.id)">Remover</button>
+          <button class="editar-btn" (click)="prepararEdicaoProfessor(professor)">Editar</button>
+          <button class="remover-btn" (click)="removerProfessor(professor.id)">Remover</button>
         </div>
       </li>
     </ul>
   </section>
 
   <!-- ===================================================== -->
-  <!-- 🔹 ABA: TURMAS (CORRIGIDO) -->
+  <!-- 🔹 ABA: TURMAS -->
   <!-- ===================================================== -->
-
   <section *ngIf="abaSelecionada === 'turmas'" class="content">
 
     <h2>{{ turmaEditando ? 'Editar Turma' : 'Cadastro de Turmas' }}</h2>
@@ -162,11 +158,13 @@
       <input type="text" placeholder="Nome da turma" required [(ngModel)]="novaTurma.nome" name="turmaNome" />
 
       <input type="number" placeholder="Idade mínima" [(ngModel)]="novaTurma.faixaEtariaMinima" name="minima" />
+
       <input type="number" placeholder="Idade máxima" [(ngModel)]="novaTurma.faixaEtariaMaxima" name="maxima" />
 
       <input type="text" placeholder="Dias da semana (ex: Seg/Qua)" [(ngModel)]="novaTurma.diaSemana" name="dias" />
 
       <input type="time" [(ngModel)]="novaTurma.horarioInicio" name="inicio" />
+
       <input type="time" [(ngModel)]="novaTurma.horarioFim" name="fim" />
 
       <input type="number" placeholder="Limite de alunos" [(ngModel)]="novaTurma.limiteAlunos" name="limite" />
@@ -176,29 +174,30 @@
         <option *ngFor="let p of professores" [value]="p.id">{{ p.nome }}</option>
       </select>
 
+      <!-- 🔥 SELECIONAR ALUNOS PARA MATRÍCULA AUTOMÁTICA -->
+      <h3>Selecionar Alunos para a Turma</h3>
+
+      <div class="lista-alunos-turma">
+        <label *ngFor="let aluno of alunos" class="aluno-checkbox">
+          <input type="checkbox"
+                 [value]="aluno.id" />
+          {{ aluno.nome }} — {{ aluno.dataNascimento }}
+        </label>
+      </div>
+
       <button type="submit" class="submit-btn">
         {{ turmaEditando ? 'Salvar Edição' : 'Cadastrar Turma' }}
       </button>
 
-      <button *ngIf="turmaEditando" class="cancel-btn" type="button" (click)="cancelarEdicaoTurma()">Cancelar</button>
+      <button *ngIf="turmaEditando" class="cancel-btn" type="button"
+              (click)="cancelarEdicaoTurma()">
+        Cancelar
+      </button>
+
     </form>
 
-    <!-- 🔍 Busca de alunos -->
-    <h3>Matricular Alunos</h3>
-
-    <input type="text" placeholder="Buscar aluno..." [(ngModel)]="buscaAluno" name="buscaAluno" />
-
-    <ul class="lista">
-      <li *ngFor="let aluno of alunos">
-        <span class="info">{{ aluno.nome }} — {{ aluno.dataNascimento }}</span>
-
-        <button type="button" class="submit-btn" (click)="matricularAluno(turmaSelecionadaId, aluno.id)">
-          Matricular
-        </button>
-      </li>
-    </ul>
-
     <h3>Turmas Cadastradas</h3>
+
     <ul class="lista">
       <li *ngFor="let t of turmas">
         <span class="info">
@@ -211,6 +210,42 @@
         </div>
       </li>
     </ul>
+
+  </section>
+
+  <!-- ===================================================== -->
+  <!-- 🔹 ABA: MATRÍCULAS -->
+  <!-- ===================================================== -->
+  <section *ngIf="abaSelecionada === 'matriculas'" class="content">
+
+    <h2>📋 Matrículas</h2>
+
+    <ul class="lista">
+      <li *ngFor="let m of matriculas">
+        <span class="info">
+          <b>Matrícula nº {{ m.id }}</b><br>
+          👤 Aluno: {{ m.aluno.nome }}<br>
+          🏫 Turma: {{ m.turma.nome }}<br>
+          📅 Data: {{ m.dataMatricula | date:'dd/MM/yyyy' }}<br>
+          🔖 Status: {{ m.status }}
+        </span>
+
+        <div class="acoes">
+          <button type="button" class="editar-btn" (click)="trancarMatricula(m.id)">
+            Trancar
+          </button>
+
+          <button type="button" class="remover-btn"
+                  (click)="deletarMatricula(m.id)">
+            Remover
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <p *ngIf="matriculas.length === 0">
+      Nenhuma matrícula cadastrada ainda.
+    </p>
 
   </section>
 
