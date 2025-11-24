@@ -33,7 +33,7 @@ export class Calendario implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['eventos']) {
       this.calendarOptions.events = this.eventos.map(e => ({
-        title: `${e.titulo} — ${e.hora}`,
+        title: e.titulo,   // ← sem e.hora (não existe!)
         date: e.data
       }));
     }

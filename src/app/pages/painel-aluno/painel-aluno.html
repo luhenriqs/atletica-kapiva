@@ -1,24 +1,27 @@
 <section class="painel-aluno">
-    <div class="painel-header">
-      <h1>Bem-vindo à Atlética Kapiva ⚽</h1>
-      <button class="sair-btn" (click)="sair()">Sair</button>
-    </div>
-  
-    <div class="info">
-      <h2>📅 Aulas Disponíveis</h2>
-      <ul>
-        <li>Segunda - 16h00 com Professor João</li>
-        <li>Quarta - 18h00 com Professor Lucas</li>
-        <li>Sábado - 10h00 com Professor Felipe</li>
-      </ul>
-  
-      <h2>🏆 Informações do Clube</h2>
-      <p>
-        A Atlética Kapiva oferece aulas de futebol infantil e juvenil, com foco em técnica, disciplina e espírito de equipe.
-      </p>
-  
-      <h2>⚽ Meu Time</h2>
-      <p>Você faz parte do <strong>Time Sub-15 Azul</strong>.</p>
-    </div>
-  </section>
-  
+  <div class="painel-header">
+    <h1>Bem-vindo, {{ aluno?.nome }}</h1>
+    <button class="sair-btn" (click)="sair()">Sair</button>
+  </div>
+
+  <div class="info">
+
+    <h2>Suas Informações</h2>
+    <p><strong>Código do Aluno:</strong> {{ aluno?.codigoAluno }}</p>
+    <p><strong>Responsável:</strong> {{ aluno?.nomeResponsavel }}</p>
+    <p><strong>Telefone do Responsável:</strong> {{ aluno?.telefoneResponsavel }}</p>
+
+    <hr />
+
+    <h2>Matrícula</h2>
+    <ng-container *ngIf="aluno?.turmaId; else matriculaAtiva">
+      <p><strong>Nome da Turma:</strong> {{ aluno?.nomeTurma }}</p>
+      <p><strong>Professor:</strong> {{ aluno?.nomeProfessor }}</p>
+    </ng-container>
+
+    <ng-template #matriculaAtiva>
+      <p>Ativa</p>
+    </ng-template>
+
+  </div>
+</section>

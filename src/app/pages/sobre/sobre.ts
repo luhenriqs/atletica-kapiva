@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sobre',
@@ -10,9 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./sobre.css']
 })
 export class Sobre {
-  constructor(private router: Router) {}
 
   inscrever() {
-    this.router.navigate(['/cadastro-aluno']);
+    // Abre o site do Senac em uma nova aba
+    window.open('https://www.sp.senac.br/', '_blank');
   }
+
 }

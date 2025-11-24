@@ -2,6 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface AulaRequest {
+  data: string;
+  horaInicio: string;
+  horaFim: string;
+  titulo: string;
+  turmaId: number;
+}
+
+export interface AulaResponse {
+  id: number;
+  data: string;
+  horaInicio: string;
+  horaFim: string;
+  titulo: string;
+  turmaId: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,16 +28,16 @@ export class AulaService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  listar(): Observable<AulaResponse[]> {
+    return this.http.get<AulaResponse[]>(this.apiUrl);
   }
 
-  criar(dados: any): Observable<any> {
-    return this.http.post(this.apiUrl, dados);
+  criar(dados: AulaRequest): Observable<AulaResponse> {
+    return this.http.post<AulaResponse>(this.apiUrl, dados);
   }
 
-  atualizar(id: number, dados: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, dados);
+  atualizar(id: number, dados: AulaRequest): Observable<AulaResponse> {
+    return this.http.put<AulaResponse>(`${this.apiUrl}/${id}`, dados);
   }
 
   deletar(id: number): Observable<void> {

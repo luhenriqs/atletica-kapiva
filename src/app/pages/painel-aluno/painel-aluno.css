@@ -1,50 +1,76 @@
 .painel-aluno {
-    background-color: #0b1c3f;
-    color: #fff;
-    min-height: 100vh;
-    padding: 20px;
-    font-family: 'Poppins', sans-serif;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.painel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.painel-header h1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.sair-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.sair-btn:hover {
+  background-color: #dc2626;
+}
+
+.info h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #111827;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 4px;
+}
+
+.info p {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  .painel-aluno {
+    padding: 15px;
+    margin: 20px 10px;
   }
-  
-  .painel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
+
   .painel-header h1 {
-    color: #f56c00;
+    font-size: 22px;
   }
-  
-  .sair-btn {
-    background: none;
-    color: #fff;
-    border: 2px solid #f56c00;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
+
+  .info h2 {
+    font-size: 18px;
   }
-  
-  .sair-btn:hover {
-    background-color: #f56c00;
+
+  .info p {
+    font-size: 14px;
   }
-  
-  .info {
-    margin-top: 30px;
-  }
-  
-  h2 {
-    color: #f56c00;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 8px;
-  }
-  
+}

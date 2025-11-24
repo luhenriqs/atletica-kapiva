@@ -3,6 +3,7 @@
     <h1>Login</h1>
     <p>Selecione o seu perfil para continuar</p>
 
+    <!-- BOTÕES DE PERFIL -->
     <div class="roles">
       <button class="role-btn aluno" (click)="selectRole('aluno')">
         Sou Aluno
@@ -12,20 +13,36 @@
       </button>
     </div>
 
+    <!-- FORMULÁRIO -->
     <div class="login-form" *ngIf="selectedRole">
+
+      <!-- TÍTULO -->
       <h2 *ngIf="selectedRole === 'aluno'">Login do Aluno</h2>
       <h2 *ngIf="selectedRole === 'funcionario'">Login do Funcionário</h2>
 
-      <form>
-        <input type="text" placeholder="E-mail ou usuário" />
-        <input type="password" placeholder="Senha" />
-        <button class="submit-btn" type="button" (click)="login()">Entrar</button>
+      <!-- FORMULÁRIO ALUNO -->
+      <form *ngIf="selectedRole === 'aluno'" [formGroup]="loginForm" (ngSubmit)="login()">
+        <input 
+          type="text" 
+          placeholder="ID do aluno (ex: 2025-0001)"
+          formControlName="codigoAluno"
+        />
+        <button class="submit-btn" type="submit">Entrar</button>
       </form>
 
-      <p class="cadastrese">
+      <!-- FORMULÁRIO FUNCIONÁRIO -->
+      <form *ngIf="selectedRole === 'funcionario'" (ngSubmit)="login()">
+        <input type="text" placeholder="E-mail ou usuário" />
+        <input type="password" placeholder="Senha" />
+        <button class="submit-btn" type="submit">Entrar</button>
+      </form>
+
+      <!-- LINK PARA CADASTRO (FUNCIONÁRIO) -->
+      <p class="cadastrese" *ngIf="selectedRole === 'funcionario'">
         Ainda não tem conta?
         <span (click)="goToCadastro()">Cadastre-se</span>
       </p>
+
     </div>
   </div>
 </section>

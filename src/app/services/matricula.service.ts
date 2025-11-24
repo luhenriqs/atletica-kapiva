@@ -6,17 +6,9 @@ export interface Matricula {
   id: number;
   dataMatricula: string;
   status: string;
-  aluno: {
-    id: number;
-    nome: string;
-    dataNascimento: string;
-  };
-  turma: {
-    id: number;
-    nome: string;
-    faixaEtariaMinima: number;
-    faixaEtariaMaxima: number;
-  };
+  codigoAluno: string;
+  alunoNome: string;
+  trancada: boolean;  
 }
 
 @Injectable({
@@ -37,7 +29,17 @@ export class MatriculaService {
   }
 
   trancar(matriculaId: number): Observable<Matricula> {
-    return this.http.put<Matricula>(`${this.apiUrl}/${matriculaId}/trancar`, {});
+    return this.http.put<Matricula>(
+      `${this.apiUrl}/${matriculaId}/status?status=TRANCADA`,
+      {}
+    );
+  }
+
+  destrancar(matriculaId: number): Observable<Matricula> {
+    return this.http.put<Matricula>(
+      `${this.apiUrl}/${matriculaId}/status?status=ATIVA`,
+      {}
+    );
   }
 
   deletar(id: number): Observable<void> {
