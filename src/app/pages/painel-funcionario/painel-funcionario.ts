@@ -351,7 +351,7 @@ adicionarAula(event: Event) {
   const professor = this.professores.find(p => p.id === turmaSelecionada.professorId);
 
   // 🔥 TÍTULO FINAL CORRIGIDO
-  const tituloAula = `${turmaSelecionada.nome} — Prof: ${professor?.nome || 'Sem professor'} — ${this.novaAula.horaInicio} às ${this.novaAula.horaFim}`;
+  const tituloAula = `${turmaSelecionada?.nome || 'Turma'} — Prof: ${professor?.nome || 'Sem professor'} — ${this.novaAula.horaInicio || '--:--'} às ${this.novaAula.horaFim || '--:--'}`;
 
   const novaAula = {
     titulo: tituloAula,
@@ -394,8 +394,8 @@ prepararEdicao(aula: any) {
   this.novaAula = {
     titulo: aula.titulo,
     data: aula.data,
-    horaInicio: aula.horaInicio,
-    horaFim: aula.horaFim,
+    horaInicio: aula.horaInicio || '',
+    horaFim: aula.horaFim || '',
     turmaId: aula.turmaId || null
   };
 }

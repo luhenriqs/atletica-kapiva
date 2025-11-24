@@ -30,7 +30,7 @@
     <select required [(ngModel)]="novaAula.turmaId" name="turma">
       <option value="" disabled selected>Escolha a turma</option>
       <option *ngFor="let t of turmas" [value]="t.id">
-        {{ t.nome }} — {{ t.diaSemana }} — {{ t.horarioInicio }} às {{ t.horarioFim }}
+        {{ t.nome }} — {{ t.faixaEtariaMinima }} a {{ t.faixaEtariaMaxima }} anos — Prof: {{ t.professor?.nome }}
       </option>
     </select>
 
@@ -224,13 +224,7 @@
           (click)="trancarOuDestrancarMatricula(m)">
           {{ m.trancada ? 'Destrancar' : 'Trancar' }}
         </button>
-
-        <button 
-          type="button" 
-          class="remover-btn" 
-          (click)="deletarMatricula(m.id)">
-          Remover
-        </button>
+        
       </div>
     </li>
   </ul>
