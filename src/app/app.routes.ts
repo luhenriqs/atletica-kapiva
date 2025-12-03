@@ -6,14 +6,14 @@ import { CadastroFuncionario } from './pages/cadastro-funcionario/cadastro-funci
 import { PainelAluno } from './pages/painel-aluno/painel-aluno';
 import { PainelFuncionario } from './pages/painel-funcionario/painel-funcionario';
 import { Sobre } from './pages/sobre/sobre';
-
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'cadastro-aluno', component: CadastroAluno },
   { path: 'cadastro-funcionario', component: CadastroFuncionario },
-  { path: 'painel-aluno', component: PainelAluno },
-  { path: 'painel-funcionario', component: PainelFuncionario },
+  { path: 'painel-aluno', component: PainelAluno }, 
+  { path: 'painel-funcionario', component: PainelFuncionario, canActivate: [AuthGuard] }, 
   { path: 'sobre', component: Sobre },
 ];
