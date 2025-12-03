@@ -1,19 +1,54 @@
 <section class="cadastro-page">
-    <div class="cadastro-container">
-      <button class="voltar-btn" (click)="voltar()">← Voltar</button>
-      <h1>Cadastro de Funcionário</h1>
-      <p>Preencha seus dados para criar sua conta de funcionário 🧡</p>
-  
-      <form>
-        <input type="text" placeholder="Nome completo" />
-        <input type="text" placeholder="RG ou CPF" />
-        <input type="date" placeholder="Data de nascimento" />
-        <input type="text" placeholder="Endereço" />
-        <input type="text" placeholder="Número de celular" />
-        <input type="email" placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
-        <button type="submit" class="submit-btn">Cadastrar</button>
-      </form>
-    </div>
-  </section>
-  
+  <div class="cadastro-container">
+    <button class="voltar-btn" (click)="voltar()">← Voltar</button>
+    <h1>Cadastro de Funcionário</h1>
+    <p>Preencha seus dados para criar sua conta de funcionário</p>
+
+    <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
+
+      <!-- Nome -->
+      <input type="text" placeholder="Nome completo" formControlName="nome" />
+      <div class="error" *ngIf="cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched">
+        Nome é obrigatório.
+      </div>
+
+      <!-- RG/CPF -->
+      <input type="text" placeholder="RG ou CPF" formControlName="rgCpf" />
+      <div class="error" *ngIf="cadastroForm.get('rgCpf')?.invalid && cadastroForm.get('rgCpf')?.touched">
+        RG ou CPF é obrigatório.
+      </div>
+
+      <!-- Data de nascimento -->
+      <input type="date" placeholder="Data de nascimento" formControlName="dataNascimento" />
+      <div class="error" *ngIf="cadastroForm.get('dataNascimento')?.invalid && cadastroForm.get('dataNascimento')?.touched">
+        Data de nascimento é obrigatória.
+      </div>
+
+      <!-- Endereço -->
+      <input type="text" placeholder="Endereço" formControlName="endereco" />
+      <div class="error" *ngIf="cadastroForm.get('endereco')?.invalid && cadastroForm.get('endereco')?.touched">
+        Endereço é obrigatório.
+      </div>
+
+      <!-- Telefone -->
+      <input type="text" placeholder="Número de celular" formControlName="telefone" />
+      <div class="error" *ngIf="cadastroForm.get('telefone')?.invalid && cadastroForm.get('telefone')?.touched">
+        Telefone é obrigatório.
+      </div>
+
+      <!-- Email -->
+      <input type="email" placeholder="E-mail" formControlName="email" />
+      <div class="error" *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched">
+        Digite um e-mail válido.
+      </div>
+
+      <!-- Senha -->
+      <input type="password" placeholder="Senha" formControlName="senha" />
+      <div class="error" *ngIf="cadastroForm.get('senha')?.invalid && cadastroForm.get('senha')?.touched">
+        Senha é obrigatória.
+      </div>
+
+      <button type="submit" class="submit-btn">Cadastrar</button>
+    </form>
+  </div>
+</section>

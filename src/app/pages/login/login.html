@@ -21,9 +21,9 @@
       <h2 *ngIf="selectedRole === 'funcionario'">Login do Funcionário</h2>
 
       <!-- FORMULÁRIO ALUNO -->
-      <form *ngIf="selectedRole === 'aluno'" [formGroup]="loginForm" (ngSubmit)="login()">
-        <input 
-          type="text" 
+      <form *ngIf="selectedRole === 'aluno'" [formGroup]="loginFormAluno" (ngSubmit)="login()">
+        <input
+          type="text"
           placeholder="ID do aluno (ex: 2025-0001)"
           formControlName="codigoAluno"
         />
@@ -31,9 +31,17 @@
       </form>
 
       <!-- FORMULÁRIO FUNCIONÁRIO -->
-      <form *ngIf="selectedRole === 'funcionario'" (ngSubmit)="login()">
-        <input type="text" placeholder="E-mail ou usuário" />
-        <input type="password" placeholder="Senha" />
+      <form *ngIf="selectedRole === 'funcionario'" [formGroup]="loginFormFuncionario" (ngSubmit)="login()">
+        <input
+          type="text"
+          placeholder="E-mail ou usuário"
+          formControlName="email"
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          formControlName="senha"
+        />
         <button class="submit-btn" type="submit">Entrar</button>
       </form>
 
