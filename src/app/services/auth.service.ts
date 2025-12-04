@@ -19,7 +19,7 @@ export interface LoginResponse {
 export class AuthService {
 
   private loginUrl = 'http://localhost:8080/auth/login';
-  private funcionariosUrl = 'http://localhost:8080/api/funcionarios'; // 
+  private funcionariosUrl = 'http://localhost:8080/api/funcionarios';
 
   constructor(private http: HttpClient) {}
 
@@ -42,10 +42,11 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  // ---- CADASTRAR FUNCIONÁRIO ----
+  // ---- CADASTRAR FUNCIONÁRIO (Público/Inicial) ----
   cadastrar(funcionario: any): Observable<any> {
+    // Nota: Não enviamos token aqui pois a rota é permitAll no Backend
     return this.http.post(this.funcionariosUrl, funcionario);
-  }  
+  }
 
   // ---- DESLOGAR ----
   logout() {
@@ -53,7 +54,7 @@ export class AuthService {
     localStorage.removeItem('funcionarioLogado');
   }
 
-  // ---- REQUISIÇÃO AUTENTICADA ----
+  // ---- REQUISIÇÃO AUTENTICADA (Helper para outros serviços) ----
   getAuthHeaders() {
     const token = this.getToken();
     return {

@@ -259,12 +259,34 @@ error: err => alert('Erro ao atualizar aluno: ' + err.message)
 cancelarEdicaoAluno() { this.alunoEditando = null; this.novoAluno = { nome: '', dataNascimento: '', nomeResponsavel: '', cpfResponsavel: '', emailResponsavel: '', telefoneResponsavel: '' }; this.cpfResponsavelInvalido = false; }
 
 removerAluno(id?: number) {
-if (!id || !confirm('Deseja remover este aluno?')) return;
-this.alunoService.deletar(id).subscribe({
-next: () => { alert('Aluno removido!'); this.carregarAlunos(); },
-error: err => alert('Erro ao remover aluno: ' + err.message)
-});
-}
+  console.log('Tentando deletar aluno com ID:', id);
+
+  if (!id) {
+    alert('Erro: ID inválido ou não fornecido.');
+    return;
+  }
+
+  if (!confirm('Tem certeza que deseja remover este aluno?')) return;
+
+  this.alunoService.deletar(id).subscribe({
+    next: () => {
+      console.log('Backend retornou sucesso (200 OK).');
+      alert('Aluno removido com sucesso!');
+
+     
+      this.alunos = this.alunos.filter(a => a.id != id);
+      this.alunosFiltrados = this.alunosFiltrados.filter(a => a.id != id);
+
+      
+      this.carregarAlunos();
+    },
+    error: (err) => {
+      console.error('Erro vindo do backend:', err);
+      alert('Erro ao remover: ' + (err.error?.message || err.message));
+    }
+  });
+  
+  }
 
 /* ================= PROFESSORES ================= */
 carregarProfessores() {
